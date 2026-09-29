@@ -160,6 +160,24 @@ p { margin: 0; }
 .topbar .dia { color: var(--gold-400); font-size: .6rem; }
 .topbar a:hover { color: var(--gold-300); }
 .topbar-right { display: flex; align-items: center; gap: 14px; }
+.topbar-login-btn {
+  background: rgba(212,180,94,.2);
+  border: 1px solid var(--gold-500);
+  color: var(--gold-300);
+  padding: 3px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .78rem;
+  font-weight: 700;
+  transition: all .25s;
+}
+.topbar-login-btn:hover {
+  background: var(--gold-500);
+  color: #17231C;
+}
 
 /* ============ HEADER ============ */
 .hdr {
@@ -280,7 +298,7 @@ p { margin: 0; }
 }
 .nav-overlay.show { opacity: 1; pointer-events: auto; }
 
-/* ============ HERO BANNER ============ */
+/* ============ HERO BANNER (MATCHING THE POSTER) ============ */
 .hero-banner {
   background: linear-gradient(145deg, #092B1E, #144933);
   position: relative;
@@ -300,12 +318,83 @@ p { margin: 0; }
 }
 .hero-banner-grid {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 320px 1fr auto;
   gap: 30px;
   align-items: center;
   position: relative;
   z-index: 2;
 }
+
+/* Top-Left/Right Admin Quick Box in Hero */
+.admin-login-box {
+  background: rgba(8, 37, 26, 0.85);
+  border: 2px solid var(--gold-500);
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.45);
+  backdrop-filter: blur(8px);
+  max-width: 310px;
+}
+.admin-login-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(212,180,94,.3);
+  padding-bottom: 8px;
+}
+.admin-login-header img {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: #fff;
+  padding: 2px;
+}
+.admin-login-header span {
+  font-family: var(--font-lat);
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--gold-300);
+  line-height: 1.2;
+}
+.admin-input-group {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  padding: 0 10px;
+  height: 36px;
+}
+.admin-input-group svg {
+  width: 16px;
+  height: 16px;
+  fill: #666;
+  flex: none;
+  margin-left: 8px;
+}
+.admin-input-group input {
+  border: 0;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: .85rem;
+  color: #111;
+  direction: rtl;
+}
+.admin-btn {
+  width: 100%;
+  height: 36px;
+  border-radius: 8px;
+  border: 0;
+  background: linear-gradient(135deg, #D4B45E, #A8802F);
+  color: #211905;
+  font-weight: 800;
+  font-size: .95rem;
+  cursor: pointer;
+  transition: all .25s;
+}
+.admin-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
 
 /* Center Main Hero Title */
 .hero-center {
@@ -383,7 +472,7 @@ p { margin: 0; }
   100% { transform: rotate(-3deg) scale(1.06); }
 }
 
-/* ============ MANUFACTURING PROCESS ============ */
+/* ============ MANUFACTURING PROCESS (مراحل التصنيع) ============ */
 .process-section {
   background: #FFF;
   border-bottom: 1px solid var(--line);
@@ -766,6 +855,103 @@ p { margin: 0; }
   font-family: var(--font-lat);
 }
 
+/* ============ ADMIN MODAL ============ */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(8,37,26,.75);
+  backdrop-filter: blur(6px);
+  z-index: 150;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s var(--ease);
+}
+.modal-backdrop.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.admin-modal-card {
+  background: #fff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 440px;
+  overflow: hidden;
+  box-shadow: 0 30px 70px rgba(0,0,0,.5);
+  border: 2px solid var(--gold-500);
+  transform: translateY(20px);
+  transition: transform .3s var(--ease);
+}
+.modal-backdrop.show .admin-modal-card {
+  transform: none;
+}
+.modal-head {
+  background: var(--green-950);
+  color: #fff;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--gold-500);
+}
+.modal-head h3 {
+  color: var(--gold-300);
+  font-size: 1.25rem;
+}
+.modal-close {
+  background: transparent;
+  border: 0;
+  color: var(--gold-300);
+  font-size: 1.6rem;
+  cursor: pointer;
+  line-height: 1;
+}
+.modal-body {
+  padding: 24px;
+}
+.modal-field {
+  margin-bottom: 16px;
+}
+.modal-field label {
+  display: block;
+  font-size: .88rem;
+  font-weight: 800;
+  color: var(--green-900);
+  margin-bottom: 6px;
+}
+.modal-field input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1.5px solid var(--line);
+  background: var(--cream);
+  font-size: .95rem;
+  outline: none;
+  transition: border-color .25s;
+}
+.modal-field input:focus {
+  border-color: var(--green-800);
+  background: #fff;
+}
+.admin-dashboard-view {
+  display: none;
+  padding: 20px;
+}
+.admin-dashboard-view.active { display: block; }
+.admin-badge-logged {
+  background: #EAF8EE;
+  border: 1px solid #2A7251;
+  color: #14442F;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: .9rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
 /* ============ FOOTER ============ */
 footer {
   background: var(--green-950);
@@ -857,7 +1043,7 @@ footer::before {
   transform: translateY(10px);
   transition: all .3s;
 }
-.to-top.show { opacity: 1; transform: none; }
+.to-top.show { opacity: 1; pointer-events: auto; transform: none; }
 .to-top:hover { background: var(--gold-500); color: #17231C; }
 
 /* ============ TOAST ============ */
@@ -884,6 +1070,7 @@ footer::before {
 /* ============ RESPONSIVE ============ */
 @media (max-width: 980px) {
   .hero-banner-grid { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+  .admin-login-box { order: 3; width: 100%; max-width: 360px; }
   .pricing-category { grid-template-columns: 1fr; }
   .pricing-side { padding: 20px; }
   .process-steps-row { grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -934,7 +1121,7 @@ footer::before {
     <div class="topbar-right">
       <a href="tel:+212691815029" dir="ltr">+212 6 91 81 50 29</a>
       <i class="dia">◆</i>
-      <a href="https://instagram.com/Sachet_bag" target="_blank" rel="noopener">Instagram: Sachet_bag</a>
+    
     </div>
   </div>
 </div>
@@ -954,7 +1141,6 @@ footer::before {
 
     <nav class="nav" id="nav" aria-label="القائمة الرئيسية">
       <a href="#accueil" class="nav-link active">الرئيسية</a>
-      <a href="#tarifs" class="nav-link">قائمة الأسعار</a>
       <a href="#etapes" class="nav-link">مراحل التصنيع</a>
       <a href="#estimateur" class="nav-link">حاسبة الأسعار</a>
       <a href="#apropos" class="nav-link">عن الشركة</a>
@@ -966,7 +1152,7 @@ footer::before {
         <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
         طلب عبر الواتساب
       </a>
-      <button class="burger" id="burger" aria-label="فتح القائمة">
+  
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -975,10 +1161,16 @@ footer::before {
 <div class="nav-overlay" id="navOverlay"></div>
 
 <main>
-  <!-- ================= HERO BANNER ================= -->
+  <!-- ================= HERO BANNER (IDENTICAL TO POSTER) ================= -->
   <section class="hero-banner" id="accueil">
     <div class="container hero-banner-grid">
       
+    
+          <img src="https://www.designarena.ai/u/290625c5-5f04-42bf-ac45-90ec5c57120b" alt="SBP">
+          <span>SACHET_BAG PRINT<br>(SBP)</span>
+      
+    
+
       <!-- Center Typography Banner -->
       <div class="hero-center">
         <h1 class="hero-main-title">طباعة الأكياس</h1>
@@ -997,7 +1189,7 @@ footer::before {
     </div>
   </section>
 
-  <!-- ================= MANUFACTURING STAGES ================= -->
+  <!-- ================= MANUFACTURING STAGES (مراحل التصنيع) ================= -->
   <section class="process-section" id="etapes">
     <div class="container">
       <div class="process-pill-title">مراحل التصنيع</div>
@@ -1010,41 +1202,4 @@ footer::before {
             <span class="p-step-num">1</span>
             <svg viewBox="0 0 100 100" width="70" height="70">
               <rect x="20" y="30" width="60" height="40" rx="8" fill="#D4DFD8" stroke="#0F3A28" stroke-width="2"/>
-              <ellipse cx="80" cy="50" rx="10" ry="20" fill="#B3C8BD" stroke="#0F3A28" stroke-width="2"/>
-            </svg>
-          </div>
-          <div class="p-step-title">تصميم وتجهيز</div>
-          <div class="p-step-desc">إعداد وتعديل ملفات الطباعة والشعار بجودة عالية.</div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-</main>
-
-<!-- ================= FOOTER ================= -->
-<footer>
-  <div class="container foot-grid">
-    <div class="foot-col foot-brand">
-      <img src="https://www.designarena.ai/u/290625c5-5f04-42bf-ac45-90ec5c57120b" alt="Sachet Bag Print">
-      <p>Sachet_Bag Print (SBP) — متخصصون في طباعة الأكياس غير المنسوجة وساشي 60g بأعلى جودة وأفضل الأسعار.</p>
-    </div>
-    <div class="foot-col">
-      <h4>تواصل معنا</h4>
-      <ul>
-        <li>الهاتف: <a href="tel:+212691815029" dir="ltr">+212 6 91 81 50 29</a></li>
-        <li>إنستغرام: <a href="https://instagram.com/Sachet_bag" target="_blank" rel="noopener">@Sachet_bag</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="container foot-bottom">
-    <p>© 2026 Sachet_Bag Print (SBP). جميع الحقوق محفوظة.</p>
-  </div>
-</footer>
-
-<a href="https://wa.me/212691815029" target="_blank" rel="noopener" class="fab-wa" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
-</a>
-
-</body>
-</html>
+              <ellipse cx="80" cy="50" rx="10" ry="20" fill="#B3C8BD" stroke="#0F3 
