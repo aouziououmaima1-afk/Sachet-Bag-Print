@@ -1121,7 +1121,10 @@ footer::before {
     <div class="topbar-right">
       <a href="tel:+212691815029" dir="ltr">+212 6 91 81 50 29</a>
       <i class="dia">◆</i>
-    
+      <button class="topbar-login-btn" id="openLoginBtn">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+        فضاء الإدارة
+      </button>
     </div>
   </div>
 </div>
@@ -1141,6 +1144,7 @@ footer::before {
 
     <nav class="nav" id="nav" aria-label="القائمة الرئيسية">
       <a href="#accueil" class="nav-link active">الرئيسية</a>
+      <a href="#tarifs" class="nav-link">قائمة الأسعار</a>
       <a href="#etapes" class="nav-link">مراحل التصنيع</a>
       <a href="#estimateur" class="nav-link">حاسبة الأسعار</a>
       <a href="#apropos" class="nav-link">عن الشركة</a>
@@ -1152,7 +1156,7 @@ footer::before {
         <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
         طلب عبر الواتساب
       </a>
-  
+      <button class="burger" id="burger" aria-label="فتح القائمة">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -1165,11 +1169,25 @@ footer::before {
   <section class="hero-banner" id="accueil">
     <div class="container hero-banner-grid">
       
-    
+      <!-- Admin Login Box in Banner (As shown on top-left of the poster) -->
+      <div class="admin-login-box" id="bannerLoginCard">
+        <div class="admin-login-header">
           <img src="https://www.designarena.ai/u/290625c5-5f04-42bf-ac45-90ec5c57120b" alt="SBP">
           <span>SACHET_BAG PRINT<br>(SBP)</span>
-      
-    
+        </div>
+        <form id="bannerLoginForm" onsubmit="handleAdminLogin(event, 'banner')">
+          <div class="admin-input-group">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            <input type="text" id="bannerUser" placeholder="اسم المستخدم" required>
+          </div>
+          <div class="admin-input-group">
+            <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+            <input type="password" id="bannerPass" placeholder="كلمة المرور" required>
+          </div>
+          <button type="submit" class="admin-btn">دخول</button>
+        </form>
+        <div id="bannerAdminMsg" style="display:none; font-size:.8rem; margin-top:6px; color:#FFE500; text-align:center;"></div>
+      </div>
 
       <!-- Center Typography Banner -->
       <div class="hero-center">
